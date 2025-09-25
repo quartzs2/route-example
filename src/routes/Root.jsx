@@ -9,18 +9,18 @@ const NAVIGATION_LINKS = [
   { path: PATHS.ERROR, label: "Error" },
 ];
 
-export default function Layout() {
+export default function Root() {
   return (
     <>
       <header className={headerStyle.header}>
         <div>Router Practice</div>
-        <div className={headerStyle.headerLinks}>
+        <nav className={headerStyle.headerLinks}>
           {NAVIGATION_LINKS.map((link) => (
             <Link key={link.path} to={link.path} className="header-link">
               {link.label}
             </Link>
           ))}
-        </div>
+        </nav>
       </header>
       <Outlet />
     </>
