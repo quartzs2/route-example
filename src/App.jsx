@@ -1,17 +1,28 @@
+import { BrowserRouter, Routes, Route } from "react-router";
+import Layout from "@components/layout/Layout";
+import { HomePage, AboutPage, ContactPage, ErrorPage } from "@pages";
+import { PATHS } from "@constants/paths";
 import "./App.css";
 
-/* App 컴포넌트
-1. 모든 라우팅을 감싸는 BrowserRouter를 선언하세요.
-2. Routes를 선언하세요.
-3. 모든 라우팅에서 보이는 Layout의 Route를 선언하세요.
-4. / 라우팅에서 보이는 <HomePage/> 컴포넌트를 라우팅에 연결하세요.
-5. /about 라우팅에서 보이는 <AboutPage/> 컴포넌트를 라우팅에 연결하세요.
-6. /contact 라우팅에서 보이는 <ContactPage/> 컴포넌트를 라우팅에 연결하세요.
-7. /* 모든 잘못된 라우팅에서 보이는 <ErrorPage/> 컴포넌트를 라우팅에 연결하세요.
-*/
+const ROUTES = [
+  { path: PATHS.HOME, element: <HomePage /> },
+  { path: PATHS.ABOUT, element: <AboutPage /> },
+  { path: PATHS.CONTACT, element: <ContactPage /> },
+  { path: PATHS.ALL, element: <ErrorPage /> },
+];
 
 function App() {
-  return <></>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          {ROUTES.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
